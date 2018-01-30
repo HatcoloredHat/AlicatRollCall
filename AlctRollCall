@@ -1,0 +1,6 @@
+import serial
+
+ser = serial.Serial('/dev/COM1', 19200, timeout=5)
+print(ser.name)
+ser.write('A')
+ser.close()
