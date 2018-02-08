@@ -1,6 +1,9 @@
+##My COM port is COM5
+
 import serial
 
-ser = serial.Serial('/dev/COM1', 19200, timeout=5)
-print(ser.name)
-ser.write('A')
-ser.close()
+ser = serial.Serial("COM5", 19200, timeout=1) ##open the serial port (COM port, baud rate, timeout)
+cmd = input("Command:") ##type an ASCII command to send, hit enter to send over the line.
+ser.write((cmd+"\r").encode("ASCII")) ##writes command entered into previous line's input with a carriage return at the end, encoded as ASCII
+print(ser.read(64)) ##prints 64 bytes from the response prompted by the command
+ser.close() ##closes the COM port immediately
